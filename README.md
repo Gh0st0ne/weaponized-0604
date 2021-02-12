@@ -76,7 +76,7 @@ Decoded by yourself :)
 - [x] Argument Parser
 - [x] SharePoint, CVE-2019-0604
 - [ ] split cmd into multiple parts (in args.cmds)
-- [ ] specify binary on demand, avoiding detection by blue team. (hardcode cmd.exe currently)
+- [x] specify binary on demand, avoiding detection by blue team. (hardcode cmd.exe currently)
 
 ## Author
 * Tree
