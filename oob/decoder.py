@@ -30,13 +30,15 @@ def decode(records, verb=False):
         result[idx] = data
 
     maxStartOffset = max(result.keys())
+    transferComplete = True
     for i in range(0, maxStartOffset, width):
         if i in result:
             _result += _dec(result[i])
         else:
             _result += '*' * width
+            transferComplete = False
     _result += _dec(result[maxStartOffset])
-    return _result
+    return transferComplete and width < result[maxStartOffset], _result
 
 # dns record with <offset>.<encoded data>.XXXXXXX.burpcollaborator.net
 def isValidBlock(record):

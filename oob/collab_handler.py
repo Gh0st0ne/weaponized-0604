@@ -20,6 +20,7 @@ def collect(payload):
 def poll(payload, decoder):
     print('payload: %s' % payload)
     shelves = []
+    complete = False
     lastUpdated = time.time()
     # stop collecting if data isn't back during 60 seconds
     while time.time() - lastUpdated <= 60:
@@ -28,9 +29,11 @@ def poll(payload, decoder):
             # cumulate result data
             shelves.extend(data)
             # get current output
-            output = decoder.decode(shelves)
+            complete, output = decoder.decode(shelves)
             lastUpdated = time.time()
             yield output
+            if complete:
+                break
         time.sleep(1)
 
 if __name__ == "__main__":
